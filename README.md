@@ -1,6 +1,6 @@
 # ⚡️ Vite + Express
 
-## For Production:
+## For Production
 
 1. Build Vite Application
 
@@ -41,4 +41,4 @@ You will need to do the following to setup a full stack workflow between client 
       });
    ```
 
-Now, when you are developing, you can make a request to any routes that start with `/api`! Vite will look for it on `5173`, but wont find it, then will look at the proxy server, and will find our express application!
+Now, when you are developing in your front end, you can make a request to `/api` without specifying your localhost ports! Vite will look the endpoint on `5173`, but wont find it, then will look at the proxy server, and will find our express application!

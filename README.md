@@ -1,6 +1,8 @@
 # ⚡️ Vite + Express
 
-1. Build Vite application
+## For Production:
+
+1. Build Vite Application
 
    a. From the client directory you can run `npm run build` to create your production build.
 
@@ -18,3 +20,25 @@
    ```
    app.use(express.static(path.join(__dirname, "./client", "dist")));
    ```
+
+## For Development
+
+In development, Vite defaults to serving the application on `PORT 5173`. Our express server is running on `PORT 3000`. This could potentially be an issue when trying to fetch from an endpoint in our backend.
+
+You will need to do the following to setup a full stack workflow between client and server!
+
+1. Make sure you have both your servers running (Your React Client and your Express Application)
+
+2. In the `vite.config.js` file change your config object to look like this:
+   ```
+      export default defineConfig({
+         plugins: [react()],
+         server: {
+            proxy: {
+            "/api": "http://localhost:3000"
+            }
+         }
+      });
+   ```
+
+Now, when you are developing, you can make a request to any routes that start with `/api`! Vite will look for it on `5173`, but wont find it, then will look at the proxy server, and will find our express application!
